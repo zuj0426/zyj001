@@ -21,7 +21,7 @@ class Login_model extends CI_Model {
         //管理员详情
         $where['username'] =$username;
         $where['password'] =$password;
-        $query = $this->db->select('username,nickname')->where($where)->get('admin')->row_array();
+        $query = $this->db->select('*')->where($where)->get('admin')->row_array();
         if(!$query){
             json_error(0,'账号不存在！','alert',[]);
         }

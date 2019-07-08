@@ -21,7 +21,6 @@ class MY_Controller extends CI_Controller {
         $this->nickname = $this->session->userdata('nickname');
         if(!$this->username){
 //            redirect($this->config->item('domain_test')."main/login");
-            redirect("/main/login");
         }
     }
 
@@ -74,21 +73,14 @@ class Userweb_Controller extends MY_Controller {
     //检验登录
     public function check_online(){
         $this->uid = $this->session->userdata('uid');
-        $this->phone = $this->session->userdata('phone');
+//        $this->phone = $this->session->userdata('phone');
         if(!$this->uid){
             redirect($this->config->item('domain_test')."main/login");
         }else{
-            //清除session,购物车，信息数量
-//            $this->session->unset_userdata('cart_num');
-//            $this->session->unset_userdata('message_num');
 
-            //获取购物车数量
-            $this->load->model('cart_model');
-            $user['cart_num']= $this->cart_model->get_cart_num($this->uid);
-
-            //获取站内消息
-            $this->load->model('message_model');
-            $user['message_num']= $this->message_model->get_message_num($this->uid);
+            //获取用户信息
+            $this->load->model('user_model');
+            $user= $this->user_model->get_user_info($this->uid);
 
             $this->session->set_userdata($user);
         }

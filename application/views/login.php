@@ -49,14 +49,14 @@
     }
     document.querySelector(".login-button").onclick = function(){
         //登陆验证
-        $.post('/test/index.php/main/login', {
+        $.post('/main/login', {
                 'username': $('input[name=username]').val(),
                 'pwd': $('input[name=pwd]').val()
             },
             function(data) {
                 if (data.code == "200") {
-                    //console.log(_url);
-                    window.location.href = 'http://localhost/test/index.php/main/index';
+                    // console.log(data);
+                    window.location.href = '/admin/index';
                 } else {
                     alert(data.msg);
                 };

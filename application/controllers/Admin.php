@@ -1,12 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Admin extends Userweb_Controller {
     public function __construct(){
         parent::__construct();
         //检测登录
 //        $this->check_online();
 //        $this->load->model('main_model');
+    }
+
+    public function index(){
+        $this->load->view('home');
     }
 
     //管理员添加页面
