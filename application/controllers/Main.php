@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Main extends CI_Controller {
+class Main extends MY_Controller {
     public function __construct(){
         parent::__construct();
         //检测登录
@@ -17,7 +17,12 @@ class Main extends CI_Controller {
         $this->load->view('index');
     }
 
+    /**
+     * 登录
+     */
     public function login(){
+//        echo 111;die;
+        $this->load->view('login');
         if($this->input->is_ajax_request()){
             $username = $this->input->post('username');
             $password = $this->input->post('pwd');
@@ -30,17 +35,21 @@ class Main extends CI_Controller {
             json_success(200, "登录成功", "url", array('url' => '/'));
 
         }
-        $this->load->view('login');
+
     }
 
-    //检验登录
-    public function check_online(){
-
-        redirect("/main/login/");
-//        $this->username = $this->session->userdata('username');
-//        $this->nickname = $this->session->userdata('nickname');
-//        if(!$this->username){
-//            redirect("/main/login");
+    /**
+     * 退出登录
+     */
+    public function logout()
+    {
+//        if(is_ajax()){
+//            $this->session->sess_destroy();
+//            json_success(201, "退出成功！", "url", ['url' => '/']);
 //        }
+        $this->load->model('user_model');
+        $this->user_model->logout();
+        $this->session->sess_destroy();
+        redirect("/");
     }
 }
