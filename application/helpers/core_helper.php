@@ -86,6 +86,15 @@ function date_formate($date, $formate = FALSE) {
     return date('Y-m-d H:i:s', $date);
 }
 
+//输出调试
+function pd($data = [])
+{
+    echo '<pre>';
+    print_r($data);
+    echo '</pre>';
+    die();
+}
+
 function timeFormat($time = 0,$format = '')
 {
     if (!$time){

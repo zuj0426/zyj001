@@ -6,21 +6,28 @@ class Admin extends Userweb_Controller {
         parent::__construct();
         //检测登录
 //        $this->check_online();
-//        $this->load->model('main_model');
+        $this->load->model('admin_model');
     }
 
+    //主页
     public function index(){
         $this->load->view('home');
     }
 
     //管理员添加页面
     public function add(){
+        if(is_ajax()){
+
+        }
         $this->load->view('admin/admin_add');
     }
 
     //管理员列表
     public function admin_list(){
-        $this->load->view('admin/admin_list');
+        $admin_list = $this->admin_model->get_admin_list();
+        $data['list'] = $admin_list;
+//        pd($data);
+        $this->load->view('admin/admin_list',$data);
     }
 
     //管理员密码编辑

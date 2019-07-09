@@ -80,7 +80,8 @@ class Userweb_Controller extends MY_Controller {
 
             //获取用户信息
             $this->load->model('user_model');
-            $user= $this->user_model->get_user_info($this->uid);
+            $user = $this->user_model->get_user_info($this->uid);
+//            $user['login_time'] = date('Y-m-d H:i:s',time());
 
             $this->session->set_userdata($user);
         }
