@@ -20,4 +20,16 @@ class Admin_model extends CI_Model{
             ->get()->result_array();
         return $admin_list;
     }
+
+    /**
+     * 获取角色列表
+     * @return array
+     */
+    public function get_role_list(){
+        $admin_list = $this->db->select('*')
+            ->from('rbac_role')
+            ->order_by('sort')
+            ->get()->result_array();
+        return $admin_list;
+    }
 }

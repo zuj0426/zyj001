@@ -1,5 +1,15 @@
 <aside class="Hui-aside">
     <div class="menu_dropdown bk_2">
+        <dl id="menu-admin">
+            <dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li><a data-href="<?php echo $this->config->item('domain_test'); ?>admin/role" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
+                    <li><a data-href="<?php echo $this->config->item('domain_test'); ?>admin/permission" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
+                    <li><a data-href="<?php echo $this->config->item('domain_test'); ?>admin/admin_list" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
+                </ul>
+            </dd>
+        </dl>
         <dl id="menu-article">
             <dt><i class="Hui-iconfont">&#xe616;</i> 资讯管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
@@ -35,16 +45,6 @@
                     <li><a data-href="<?php echo $this->config->item('domain_test'); ?>member/member_record_browse" data-title="浏览记录" href="javascript:void(0)">浏览记录</a></li>
                     <li><a data-href="<?php echo $this->config->item('domain_test'); ?>member/member_record_download" data-title="下载记录" href="javascript:void(0)">下载记录</a></li>
                     <li><a data-href="<?php echo $this->config->item('domain_test'); ?>member/member_record_share" data-title="分享记录" href="javascript:void(0)">分享记录</a></li>
-                </ul>
-            </dd>
-        </dl>
-        <dl id="menu-admin">
-            <dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="<?php echo $this->config->item('domain_test'); ?>admin/role" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
-                    <li><a data-href="<?php echo $this->config->item('domain_test'); ?>admin/permission" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
-                    <li><a data-href="<?php echo $this->config->item('domain_test'); ?>admin/admin_list" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
                 </ul>
             </dd>
         </dl>

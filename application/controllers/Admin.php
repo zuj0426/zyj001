@@ -17,9 +17,14 @@ class Admin extends Userweb_Controller {
     //管理员添加页面
     public function add(){
         if(is_ajax()){
-
+//            var_dump(1111);die;
+            $username = $this->input->post('username');
+            if ($username) json_success(417,'username','add',$username);
+            json_error(417,'false','add',[]);
         }
-        $this->load->view('admin/admin_add');
+        $role_arr = $this->admin_model->get_role_list();
+        $data['role_arr'] = $role_arr;
+        $this->load->view('admin/admin_add',$data);
     }
 
     //管理员列表

@@ -20,7 +20,7 @@
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" name="" value=""></th>
 				<th width="40">ID</th>
-				<th width="150">登录名</th>
+				<th width="150">昵称</th>
 				<th width="100">手机</th>
 				<th width="150">角色</th>
 				<th width="130">加入时间</th>
