@@ -18,7 +18,7 @@ class Admin extends Userweb_Controller {
     public function add(){
         if(is_ajax()){
 //            var_dump(1111);die;
-            $data = [];
+            $data = array();
             $data['username'] = $this->input->post('username');
             $data['nickname'] = $this->input->post('nickname');
             $data['password'] = $this->input->post('password');
