@@ -18,9 +18,18 @@ class Admin extends Userweb_Controller {
     public function add(){
         if(is_ajax()){
 //            var_dump(1111);die;
-            $username = $this->input->post('username');
-            if ($username) json_success(417,'username','add',$username);
-            json_error(417,'false','add',[]);
+            $data = [];
+            $data['username'] = $this->input->post('username');
+            $data['nickname'] = $this->input->post('nickname');
+            $data['password'] = $this->input->post('password');
+            $data['password2'] = $this->input->post('password2');
+            $data['tel'] = $this->input->post('tel');
+            $data['adminRole'] = $this->input->post('adminRole');
+            $data['notes'] = $this->input->post('notes');
+//            $data['salt'] =
+            if($data['password'] != $data['password2']) json_error(400,'确认密码不一致','error',[]);
+            if ($data) json_success(666,'username','add',$data);
+            json_error(400,'false','add',[]);
         }
         $role_arr = $this->admin_model->get_role_list();
         $data['role_arr'] = $role_arr;

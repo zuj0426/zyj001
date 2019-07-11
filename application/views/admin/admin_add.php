@@ -3,7 +3,7 @@
 </head>
 <body>
 <article class="page-container">
-	<form class="form form-horizontal" id="form-admin-add" name="form">
+	<form action="/admin/add" method="post" class="form form-horizontal" id="form-admin-add" name="form" >
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>账号名：</label>
             <div class="formControls col-xs-8 col-sm-9">
@@ -37,7 +37,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">角色：</label>
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-                <select class="select" name="adminRole" size="1">
+                <select class="select" id="adminRole" name="adminRole" size="1">
                     <?php foreach ($role_arr as $key=>$val){?>
                         <option value="<?= $val['id']?>"><?= $val['names']?></option>
                     <?php }?>
@@ -47,13 +47,13 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">备注：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <textarea name="notes" cols="" rows="" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true" onKeyUp="$.Huitextarealength(this,100)"></textarea>
+                <textarea id="notes" name="notes" cols="" rows="" class="textarea"  placeholder="说点什么...100个字符以内" dragonfly="true" onKeyUp="$.Huitextarealength(this,100)"></textarea>
                 <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
             </div>
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                <input class="btn btn-primary radius" type="submit" id="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
             </div>
         </div>
 	</form>
@@ -72,72 +72,45 @@ $(function(){
 		radioClass: 'iradio-blue',
 		increaseArea: '20%'
 	});
-    var form = new FormData(document.getElementById("form-admin-add"));
-	$("#form-admin-add").validate({
-		rules:{
-            username:{
-				required:true,
-				minlength:4,
-				maxlength:16
-			},
-            nickname:{
-                required:true,
-                minlength:4,
-                maxlength:16,
+
+    /* 表单验证，提交 */
+    $("#submit").click(function() {
+        var username = $('#username').val();
+        var nickname = $('#nickname').val();
+        var password = $('#password').val();
+        var password2 = $('#password2').val();
+        var tel = $('#tel').val();
+        var adminRole = $('#adminRole').val();
+        var notes = $('#notes').val();
+
+        $.ajax({
+            type: "POST",
+            url: '/admin/add',
+            dataType: 'json',
+            data: {
+                "username": username,
+                "nickname": nickname,
+                "password": password,
+                "password2": password2,
+                "tel": tel,
+                "adminRole": adminRole,
+                "notes": notes,
             },
-			password:{
-				required:true,
-                minlength:4,
-                maxlength:16,
-			},
-			password2:{
-				required:true,
-                minlength:4,
-                maxlength:16,
-				equalTo: "#password"
-			},
-            tel:{
-				required:true,
-				isPhone:true,
-			},
-			adminRole:{
-				required:true,
-			},
-		},
-		onkeyup:false,
-		focusCleanup:true,
-		success:"valid",
-		submitHandler:function(form){
-            var username = $('#username').val();
-            $.ajax({
-                url : "/admin/add",
-                type : 'post',
-                contentType : "application/json; charset=utf-8",
-                data : JSON.stringify({
-                    username : username,
-                }),
-                success : function(data) {
-                    console.log(data);
-                    if(data.status=='success'){
-                        layer.msg('添加成功!',{icon:1,time:1000});
-                    }
+            success: function(data) {
+                // console.log('data',data);
+                //popTip(data.msg)
+                if (data.success == true) {
+                    layer.msg('添加成功!',{icon:1,time:1000});
+                } else {
+                    layer.msg('error!',{icon:1,time:1000});
+                    //popTip(data.msg)
                 }
-            });
-			// $(form).ajaxSubmit({
-			// 	type: 'post',
-			// 	url: "/admin/add" ,
-			// 	success: function(data){
-			// 		layer.msg('添加成功!',{icon:1,time:1000});
-			// 	},
-             //    error: function(XmlHttpRequest, textStatus, errorThrown){
-			// 		layer.msg('error!',{icon:1,time:1000});
-			// 	}
-			// });
-			var index = parent.layer.getFrameIndex(window.name);
-			parent.$('.btn-refresh').click();
-			parent.layer.close(index);
-		}
-	});
+            }
+        });
+        // var index = parent.layer.getFrameIndex(window.name);
+        parent.$('.btn-refresh').click();
+        // parent.layer.close(index);
+    });
 });
 </script> 
 <!--/请在上方写此页面业务相关的脚本-->
