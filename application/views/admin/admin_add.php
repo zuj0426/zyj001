@@ -140,12 +140,12 @@ $(function(){
                 "notes": notes,
             },
             success: function(data) {
-                // console.log('data',data);
+                console.log('data',data);
                 //popTip(data.msg)
                 if (data.success == true) {
                     layer.msg('添加成功!',{icon:1,time:1000});
                 } else {
-                    layer.msg('error!',{icon:1,time:1000});
+                    layer.msg(data.msg,{icon:1,time:1000});
                     //popTip(data.msg)
                 }
             }

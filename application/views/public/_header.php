@@ -3,7 +3,7 @@
         <div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/admin/index">H for Admin</a>
 			<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 				<ul class="cl">
-					<li><?= $this->session->userdata('role_name')?></li>
+					<li><?= $this->session->userdata('role')?></li>
 					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">
                         <a href="#" class="dropDown_A"><?= $this->session->userdata('nickname')?> <i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">

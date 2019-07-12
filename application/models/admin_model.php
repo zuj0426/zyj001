@@ -41,6 +41,13 @@ class Admin_model extends CI_Model{
      */
     public function add($data){
         $this->db->trans_begin();
+        $admin_list = $this->db->select('*')
+            ->from('admin')
+            ->get()->result_array();
+        foreach ($admin_list as $key=>$val){
+            if ($val['username'] == $data['username']) json_error(400, '账号已存在', 'alert', []);
+            if ($val['nickname'] == $data['nickname']) json_error(400, '昵称已被使用', 'alert', []);
+        }
 //        $insert_data = $data;
         $data['salt'] = $this->salt();
         $data['password'] = md5($data['password'].$data['salt']);
