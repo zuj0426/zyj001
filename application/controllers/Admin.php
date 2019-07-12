@@ -22,14 +22,15 @@ class Admin extends Userweb_Controller {
             $data['username'] = $this->input->post('username');
             $data['nickname'] = $this->input->post('nickname');
             $data['password'] = $this->input->post('password');
-            $data['password2'] = $this->input->post('password2');
+            $password2 = $this->input->post('password2');
             $data['tel'] = $this->input->post('tel');
-            $data['adminRole'] = $this->input->post('adminRole');
+            $data['role_name'] = $this->input->post('role_name');
             $data['notes'] = $this->input->post('notes');
-//            $data['salt'] =
-            if($data['password'] != $data['password2']) json_error(400,'确认密码不一致','error',[]);
-            if ($data) json_success(666,'username','add',$data);
-            json_error(400,'false','add',[]);
+            $data['add_time'] = time();
+//            var_dump($role_arr);die;
+            if($data['password'] != $password2) json_error(400,'确认密码不一致','error',[]);
+            $res = $this->admin_model->add($data);
+            if ($res) json_success(666,'username','add',[]);
         }
         $role_arr = $this->admin_model->get_role_list();
         $data['role_arr'] = $role_arr;

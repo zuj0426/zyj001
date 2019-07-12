@@ -35,7 +35,7 @@
 				<td><?php echo $v['id']?></td>
 				<td><?php echo $v['nickname']?></td>
 				<td><?php echo $v['tel']?></td>
-				<td><?php echo $v['role_name']?></td>
+				<td><?php echo $v['role']?></td>
 				<td><?php echo $v['add_time']?></td>
                 <?php if ($v['status']==1){?>
 				    <td class="td-status"><span class="label label-success radius">已启用</span></td>

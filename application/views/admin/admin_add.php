@@ -3,7 +3,7 @@
 </head>
 <body>
 <article class="page-container">
-	<form action="/admin/add" method="post" class="form form-horizontal" id="form-admin-add" name="form" >
+	<form action="" method="post" class="form form-horizontal" id="form-admin-add" name="form" >
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>账号名：</label>
             <div class="formControls col-xs-8 col-sm-9">
@@ -39,7 +39,7 @@
             <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
                 <select class="select" id="adminRole" name="adminRole" size="1">
                     <?php foreach ($role_arr as $key=>$val){?>
-                        <option value="<?= $val['id']?>"><?= $val['names']?></option>
+                        <option value="<?= $val['role_name']?>"><?= $val['names']?></option>
                     <?php }?>
                 </select>
                 </span> </div>
@@ -74,6 +74,49 @@ $(function(){
 	});
 
     /* 表单验证，提交 */
+    // $("#form-admin-add").validate({
+    //     rules:{
+    //         username:{
+    //             required:true,
+    //             minlength:4,
+    //             maxlength:16
+    //         },
+    //         nickname:{
+    //             required:true,
+    //             minlength:4,
+    //             maxlength:16
+    //         },
+    //         password:{
+    //             required:true,
+    //         },
+    //         password2:{
+    //             required:true,
+    //             equalTo: "#password"
+    //         },
+    //         tel:{
+    //             required:true,
+    //             isPhone:true,
+    //         },
+    //         adminRole:{
+    //             required:true,
+    //         },
+    //         notes: {
+    //             maxlength: 100,
+    //         }
+    //     },
+    //     onkeyup:false,
+    //     focusCleanup:true,
+    //     success:"valid",
+    //     submitHandler:function(form){
+    //         $(form).ajaxSubmit();
+    //         var index = parent.layer.getFrameIndex(window.name);
+    //         parent.location.replace(parent.location.href)
+    //         parent.layer.close(index);
+    //     }
+    // });
+
+
+    /* 表单验证，提交 */
     $("#submit").click(function() {
         var username = $('#username').val();
         var nickname = $('#nickname').val();
@@ -93,7 +136,7 @@ $(function(){
                 "password": password,
                 "password2": password2,
                 "tel": tel,
-                "adminRole": adminRole,
+                "role_name": adminRole,
                 "notes": notes,
             },
             success: function(data) {

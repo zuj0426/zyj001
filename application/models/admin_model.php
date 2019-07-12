@@ -15,8 +15,9 @@ class Admin_model extends CI_Model{
      * @return array
      */
     public function get_admin_list(){
-        $admin_list = $this->db->select('*')
-            ->from('admin')
+        $admin_list = $this->db->select('a.*,rr.names as role')
+            ->from('admin a')
+            ->join('rbac_role rr','a.role_name=rr.role_name','left')
             ->get()->result_array();
         return $admin_list;
     }
@@ -31,5 +32,37 @@ class Admin_model extends CI_Model{
             ->order_by('sort')
             ->get()->result_array();
         return $admin_list;
+    }
+
+    /**
+     * 添加管理员
+     * @param $data
+     * @return array
+     */
+    public function add($data){
+        $this->db->trans_begin();
+//        $insert_data = $data;
+        $data['salt'] = $this->salt();
+        $data['password'] = md5($data['password'].$data['salt']);
+        $this->db->insert('admin',$data);
+        if (!$this->db->affected_rows()) {
+            $this->db->trans_rollback();
+            json_error(400, '添加管理员失败', 'alert', []);
+        }
+        $this->db->trans_commit();
+        return true;
+    }
+
+    /**
+     * 加盐
+     * @return string
+     */
+    private function salt(){
+        $rand_salt = '';
+        for ($i = 0; $i < 6; $i++)
+        {
+            $rand_salt .= chr(mt_rand(33, 126));
+        }
+        return $rand_salt;
     }
 }
