@@ -37,6 +37,14 @@ class Admin extends Userweb_Controller {
         $this->load->view('admin/admin_add',$data);
     }
 
+    //切换用户
+    public function check_out(){
+
+        $role_arr = $this->admin_model->get_role_list();
+        $data['role_arr'] = $role_arr;
+        $this->load->view('admin/admin_add',$data);
+    }
+
     //管理员列表
     public function admin_list(){
         $admin_list = $this->admin_model->get_admin_list();

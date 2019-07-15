@@ -8,7 +8,7 @@
                         <a href="#" class="dropDown_A"><?= $this->session->userdata('nickname')?> <i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
                             <li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
-                            <li><a href="/admin/login">切换账户</a></li>
+                            <li><a href="/admin/check_out">切换账户</a></li>
                             <li><a href="/admin/logout">退出</a></li>
 						</ul>
 					</li>

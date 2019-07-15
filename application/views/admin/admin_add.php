@@ -74,49 +74,6 @@ $(function(){
 	});
 
     /* 表单验证，提交 */
-    // $("#form-admin-add").validate({
-    //     rules:{
-    //         username:{
-    //             required:true,
-    //             minlength:4,
-    //             maxlength:16
-    //         },
-    //         nickname:{
-    //             required:true,
-    //             minlength:4,
-    //             maxlength:16
-    //         },
-    //         password:{
-    //             required:true,
-    //         },
-    //         password2:{
-    //             required:true,
-    //             equalTo: "#password"
-    //         },
-    //         tel:{
-    //             required:true,
-    //             isPhone:true,
-    //         },
-    //         adminRole:{
-    //             required:true,
-    //         },
-    //         notes: {
-    //             maxlength: 100,
-    //         }
-    //     },
-    //     onkeyup:false,
-    //     focusCleanup:true,
-    //     success:"valid",
-    //     submitHandler:function(form){
-    //         $(form).ajaxSubmit();
-    //         var index = parent.layer.getFrameIndex(window.name);
-    //         parent.location.replace(parent.location.href)
-    //         parent.layer.close(index);
-    //     }
-    // });
-
-
-    /* 表单验证，提交 */
     $("#submit").click(function() {
         var username = $('#username').val();
         var nickname = $('#nickname').val();
