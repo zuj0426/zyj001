@@ -11,6 +11,7 @@
 <!--[if lt IE 9]>
 <script type="text/javascript" src="<?php echo $this->config->item('domain_static'); ?>lib/html5shiv.js"></script>
 <script type="text/javascript" src="<?php echo $this->config->item('domain_static'); ?>lib/respond.min.js"></script>
+<script type="text/javascript" src="<?php echo $this->config->item('domain_static'); ?>js/layer.js"></script>
 <![endif]-->
 <link rel="stylesheet" type="text/css" href="<?php echo $this->config->item('domain_static'); ?>static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo $this->config->item('domain_static'); ?>static/h-ui.admin/css/H-ui.admin.css" />

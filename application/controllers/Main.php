@@ -38,11 +38,21 @@ class Main extends MY_Controller {
      */
     public function logout()
     {
-//        if(is_ajax()){
-//            $this->session->sess_destroy();
-//            json_success(201, "退出成功！", "url", ['url' => '/']);
-//        }
-        $this->session->sess_destroy();
-        redirect($this->config->item('domain_test')."main/login");
+        if(is_ajax()){
+            $this->session->sess_destroy();
+            json_success(200, "退出成功！", "url", ['url' => '/main/login']);
+        }
+//        $this->session->sess_destroy();
+//        redirect($this->config->item('domain_test')."main/login");
+    }
+
+    /**
+     * 切换用户
+     */
+    public function check_out(){
+        if(is_ajax()){
+            $this->session->sess_destroy();
+            json_success(200, "切换成功！", "url", ['url' => '/main/login']);
+        }
     }
 }
