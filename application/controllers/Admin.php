@@ -65,4 +65,24 @@ class Admin extends Userweb_Controller {
         $this->load->view('admin/admin_role_add');
     }
 
+    //禁用管理员
+    public function admin_stop(){
+        if(is_ajax()){
+            $admin_id = $this->input->post('id');
+            $res = $this->admin_model->admin_stop($admin_id);
+            if ($res) json_success(200, "成功！", "url", []);
+            json_error(400,'禁用失败','alert',[]);
+        }
+    }
+
+    //启用管理员
+    public function admin_start(){
+        if(is_ajax()){
+            $admin_id = $this->input->post('id');
+            $res = $this->admin_model->admin_start($admin_id);
+            if ($res) json_success(200, "成功！", "url", []);
+            json_error(400,'启用失败','alert',[]);
+        }
+    }
+
 }

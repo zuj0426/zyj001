@@ -9,7 +9,7 @@
 						<ul class="dropDown-menu menu radius box-shadow">
                             <li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
                             <li><a class="check_out" href="javascript:;">切换账户</a></li>
-                            <li><a class="logout" href="/main/logout">退出</a></li>
+                            <li><a class="logout" href="javascript:;">退出</a></li>
 						</ul>
 					</li>
 					<li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
@@ -32,21 +32,38 @@
         layer.confirm('确认要切换用户吗？', {
             btn: ['确认','取消'] //按钮
         }, function(){
-            $.ajax({
-                url:'/main/check_out',
-                type:'post',
+            $.ajax({url:"/main/check_out",
                 dataType:'json',
                 success:function(data){
                     if(data.code==200){
-                        layer.msg('切换成功!',{time:1000,icon:6,end:function(){
+                        layer.msg('退出成功!',{time:1000,icon:6,end:function(){
                                 window.location.href=data.data.url
                             }});
                     }
                 },
                 error:function(){
                     layer.msg('网络错误！',{time:5000,icon:5});
-                }
-            })
+                }});
+        }, function(){
+        });
+    }
+
+    document.querySelector(".logout").onclick = function(){
+        layer.confirm('确认要退出吗？', {
+            btn: ['确认','取消'] //按钮
+        }, function(){
+            $.ajax({url:"/main/check_out",
+                dataType:'json',
+                success:function(data){
+                    if(data.code==200){
+                        layer.msg('退出成功!',{time:1000,icon:6,end:function(){
+                                window.location.href=data.data.url
+                            }});
+                    }
+                },
+                error:function(){
+                    layer.msg('网络错误！',{time:5000,icon:5});
+                }});
         }, function(){
         });
     }

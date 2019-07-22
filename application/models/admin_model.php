@@ -19,6 +19,9 @@ class Admin_model extends CI_Model{
             ->from('admin a')
             ->join('rbac_role rr','a.role_name=rr.role_name','left')
             ->get()->result_array();
+        foreach ($admin_list as $k=>$v){
+            $admin_list[$k]['add_time'] = date('Y-m-d H:i:s',$v['add_time']);
+        }
         return $admin_list;
     }
 
@@ -71,5 +74,45 @@ class Admin_model extends CI_Model{
             $rand_salt .= chr(mt_rand(33, 126));
         }
         return $rand_salt;
+    }
+
+    /**
+     * 启用管理员
+     * @param $admin_id
+     * @return string
+     */
+    public function admin_start($admin_id){
+        $this->db->trans_begin();
+        $data = array(
+            'status' => 1
+        );
+        $this->db->where('id', $admin_id);
+        $this->db->update('admin', $data);
+        if (!$this->db->affected_rows()) {
+            $this->db->trans_rollback();
+            return false;
+        }
+        $this->db->trans_commit();
+        return true;
+    }
+
+    /**
+     * 禁用管理员
+     * @param $admin_id
+     * @return string
+     */
+    public function admin_stop($admin_id){
+        $this->db->trans_begin();
+        $data = array(
+            'status' => 0
+        );
+        $this->db->where('id', $admin_id);
+        $this->db->update('admin', $data);
+        if (!$this->db->affected_rows()) {
+            $this->db->trans_rollback();
+            return false;
+        }
+        $this->db->trans_commit();
+        return true;
     }
 }

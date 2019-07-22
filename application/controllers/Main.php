@@ -42,8 +42,6 @@ class Main extends MY_Controller {
             $this->session->sess_destroy();
             json_success(200, "退出成功！", "url", ['url' => '/main/login']);
         }
-//        $this->session->sess_destroy();
-//        redirect($this->config->item('domain_test')."main/login");
     }
 
     /**
